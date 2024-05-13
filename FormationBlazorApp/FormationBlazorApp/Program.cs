@@ -1,10 +1,15 @@
 using FormationBlazorApp.Components;
+using ServicesLibrary;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+//builder.Services.AddScoped(x => new HttpClient { BaseAddress = new Uri(builder.Configuration["ApiUrl"]) });
+builder.Services.AddApiServices(builder.Configuration["ApiUrl"]);
+
 
 var app = builder.Build();
 

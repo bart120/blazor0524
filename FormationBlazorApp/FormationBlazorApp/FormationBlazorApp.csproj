@@ -23,4 +23,8 @@
     <None Include="Components\Pages\NotFoundPerso.razor" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ServicesLibrary\ServicesLibrary.csproj" />
+  </ItemGroup>
+
 </Project>
