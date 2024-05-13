@@ -1,6 +1,14 @@
-﻿<Router AppAssembly="typeof(Program).Assembly">
+﻿@*@using FormationBlazorApp.Components.Layout*@
+<Router AppAssembly="typeof(Program).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
         <FocusOnNavigate RouteData="routeData" Selector="h1" />
     </Found>
+    @* v7
+    <NotFound>
+        <PageTitle>404 Not found</PageTitle>
+        <LayoutView Layout="@typeof(Layout.MainLayout)">
+            <p class="alert-danger">Page introuvable</p>
+        </LayoutView>
+    </NotFound>*@
 </Router>
