@@ -5,7 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
+    .AddInteractiveServerComponents()
+    .AddInteractiveWebAssemblyComponents();
 
 //builder.Services.AddScoped(x => new HttpClient { BaseAddress = new Uri(builder.Configuration["ApiUrl"]) });
 builder.Services.AddApiServices(builder.Configuration["ApiUrl"]);
@@ -30,6 +31,8 @@ app.UseAntiforgery();
 app.UseStatusCodePagesWithRedirects("/404");
 
 app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
+    .AddInteractiveServerRenderMode()
+    .AddInteractiveWebAssemblyRenderMode()
+    .AddAdditionalAssemblies(typeof(CarsLibrary._Imports).Assembly);
 
 app.Run();
