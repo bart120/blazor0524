@@ -13,7 +13,7 @@
         </div>
     </div>*@
 
-    <InputField Label="Login" @bind-Value="model.Email" placeholder="Votre login" />
+    <InputField Label="Login" @bind-Value="model.Email" placeholder="Votre login" @ref="MonChamp" />
 
     <InputField Label="Mot de passe" @bind-Value="model.Password" placeholder="Votre mot de passe" type="password" />
     
@@ -26,6 +26,7 @@
 @code {
     private LoginViewModel model = new LoginViewModel { Email = "", Password = "" };
 
+    private ElementReference MonChamp;
 
     private void submit()
     {
