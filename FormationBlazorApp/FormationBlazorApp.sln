@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FormationBlazorApp", "FormationBlazorApp\FormationBlazorApp.csproj", "{0E304814-6859-41FB-ABEF-24E2A15FDF9C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesLibrary", "ServicesLibrary\ServicesLibrary.csproj", "{2ED24A01-AEA4-4DE5-8429-CFDEF7388F32}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarsLibrary", "CarsLibrary\CarsLibrary.csproj", "{94FBD5CD-276D-40E8-AB9A-C389E5208424}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0E304814-6859-41FB-ABEF-24E2A15FDF9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E304814-6859-41FB-ABEF-24E2A15FDF9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E304814-6859-41FB-ABEF-24E2A15FDF9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E304814-6859-41FB-ABEF-24E2A15FDF9C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2ED24A01-AEA4-4DE5-8429-CFDEF7388F32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2ED24A01-AEA4-4DE5-8429-CFDEF7388F32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ED24A01-AEA4-4DE5-8429-CFDEF7388F32}.Release|Any CPU.ActiveCfg = Release|Any CPU
