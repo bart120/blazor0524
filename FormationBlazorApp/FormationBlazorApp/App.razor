@@ -23,7 +23,7 @@
     {
         if (context.Path.Contains("cars"))
         {
-            var ass = await assemblyLoader.LoadAssembliesAsync(new[] { "CarsLibrary.dll" });
+            var ass = await assemblyLoader.LoadAssembliesAsync(new[] { "CarsLibrary.wasm" });
             assemblies.AddRange(ass);
         }
     }
