@@ -1,0 +1,41 @@
+﻿@page "/brands"
+
+@*@inject HttpClient http*@
+@inject BrandsService servBrands;
+
+
+<PageTitle>Liste des marques</PageTitle>
+
+<h3>Marques</h3>
+
+@if (brands == null)
+{
+    <p><em>Chargement...</em></p>
+}
+else
+{
+    <div class="row">
+        @foreach (var brand in brands)
+        {
+            <div class="col-3">
+                <div class="card">
+                    <img class="card-img-top" src="/images/@brand.Image" />
+                    <div class="card-body">
+                        <h5 class="card-title">@brand.Name</h5>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+@code {
+    private List<Brand>? brands = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+       brands = await servBrands.getAllAsync();
+
+
+    }
+}

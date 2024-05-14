@@ -1,0 +1,32 @@
+﻿@page "/authentication/login"
+<h3>Authentification</h3>
+
+
+<EditForm novalidate Model="@model" OnValidSubmit="@submit">
+    <DataAnnotationsValidator />
+
+    <div class="mb-3 row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <InputText @bind-Value="model.Email" class="form-control" />
+            <ValidationMessage For="@(() => model.Email)" />
+        </div>
+    </div>
+
+    
+
+    <div>
+        <button type="submit" class="btn btn-primary">Se connecter</button>
+    </div>
+</EditForm>
+
+@code {
+    private LoginViewModel model = new LoginViewModel { Email = "", Password = "" };
+
+
+    private void submit()
+    {
+        
+        Console.WriteLine(model.Password);
+    }
+}

@@ -1,0 +1,30 @@
+﻿﻿@using System.Reflection
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
+
+@inject LazyAssemblyLoader assemblyLoader
+
+<Router AppAssembly="@typeof(App).Assembly" AdditionalAssemblies="@assemblies" OnNavigateAsync="onNavigate">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>Not found</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p class="alert-danger">Page introuvable</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+
+@code {
+    private List<Assembly> assemblies = new();
+
+    private async Task onNavigate(NavigationContext context)
+    {
+        if (context.Path.Contains("cars"))
+        {
+            var ass = await assemblyLoader.LoadAssembliesAsync(new[] { "CarsLibrary.dll" });
+            assemblies.AddRange(ass);
+        }
+    }
+}

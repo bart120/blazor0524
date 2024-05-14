@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesLibrary", "Services
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarsLibrary", "CarsLibrary\CarsLibrary.csproj", "{94FBD5CD-276D-40E8-AB9A-C389E5208424}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormationBlazorApp", "FormationBlazorApp\FormationBlazorApp.csproj", "{B229ECE9-07A0-44EA-991E-B043FD007CEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{94FBD5CD-276D-40E8-AB9A-C389E5208424}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94FBD5CD-276D-40E8-AB9A-C389E5208424}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94FBD5CD-276D-40E8-AB9A-C389E5208424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B229ECE9-07A0-44EA-991E-B043FD007CEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B229ECE9-07A0-44EA-991E-B043FD007CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B229ECE9-07A0-44EA-991E-B043FD007CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B229ECE9-07A0-44EA-991E-B043FD007CEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
