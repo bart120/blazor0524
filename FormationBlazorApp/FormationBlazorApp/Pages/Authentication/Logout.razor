@@ -1,0 +1,17 @@
+﻿@page "/authentication/logout"
+
+@using Blazored.SessionStorage
+
+@inject ISyncSessionStorageService store;
+@inject NavigationManager nav;
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        store.SetItem<User>("USER", null);
+        store.RemoveItem("USER");
+        //store.Clear();
+        nav.NavigateTo("/");
+    }
+
+}

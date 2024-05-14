@@ -1,6 +1,10 @@
 ﻿@page "/authentication/login"
-<h3>Authentification</h3>
 
+@using Blazored.SessionStorage
+
+@inject ISyncSessionStorageService store;
+
+<h3>Authentification</h3>
 
 <EditForm novalidate Model="@model" OnValidSubmit="@submit">
     <DataAnnotationsValidator />
@@ -18,7 +22,7 @@
     <InputField Label="Mot de passe" @bind-Value="model.Password" placeholder="Votre mot de passe" type="password" />
     
 
-    <div>
+    <div @ref="maDiv">
         <button type="submit" class="btn btn-primary">Se connecter</button>
     </div>
 </EditForm>
@@ -26,11 +30,15 @@
 @code {
     private LoginViewModel model = new LoginViewModel { Email = "", Password = "" };
 
-    private ElementReference MonChamp;
+    private ElementReference maDiv;
+
+    private InputField MonChamp;
 
     private void submit()
     {
-        
-        Console.WriteLine(model.Email);
+        //call server
+        //Console.WriteLine(model.Email);
+        var user = new User { Fullname = "Bob", Email = model.Email };
+        store.SetItem("USER", user);
     }
 }

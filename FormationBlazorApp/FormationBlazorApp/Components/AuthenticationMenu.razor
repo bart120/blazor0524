@@ -1,0 +1,44 @@
+﻿@using Blazored.SessionStorage
+
+@inject ISyncSessionStorageService store;
+@inject NavigationManager nav;
+
+@if (user == null)
+{
+    <NavLink class="nav-link" href="authentication/login">
+        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Login
+    </NavLink>
+}
+else
+{
+    <div>
+        Bonjour @user.Fullname
+        <button class="btn btn-warning" @onclick="logout">Se déconnecter</button>
+    </div>
+}
+
+@code {
+    private User? user;
+
+    protected async override Task OnInitializedAsync()
+    {
+        store.Changed += (object sender, ChangedEventArgs args) =>
+        {
+            if(args.Key == "USER")
+            {
+                user = args.NewValue as User;
+                StateHasChanged();
+            }
+            
+        };
+
+        user = store.GetItem<User>("USER");
+    }
+
+    private void logout()
+    {
+        nav.NavigateTo("authentication/logout");
+    }
+
+
+}

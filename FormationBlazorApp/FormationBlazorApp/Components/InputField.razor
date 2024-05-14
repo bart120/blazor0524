@@ -2,7 +2,7 @@
 <div class="mb-3 row">
     <label for="staticEmail" class="col-sm-2 col-form-label">@Label</label>
     <div class="col-sm-10">
-        <InputText @bind-Value:get="Value" @bind-Value:set="SetValueAsync" class="@($"form-control {validCssClass}")" @attributes="Attributes" />
+        <input @bind:get="Value" @bind:set="SetValueAsync" class="@($"form-control {validCssClass}")" @attributes="Attributes" />
         <ValidationMessage For="@ValueExpression" />
         @foreach (var message in EditContext.GetValidationMessages(fieldId))
         {
