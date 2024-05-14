@@ -1,0 +1,36 @@
+﻿@if (onError)
+{
+    <div class="alert alert-danger" role="alert">
+        @errorMessage
+    </div>
+    <button @onclick="test">TEST</button>
+}
+
+<CascadingValue Value="DisplayError">
+    <CascadingValue Value="NextStep">
+        @ChildContent
+    </CascadingValue>
+</CascadingValue>
+
+@code {
+    private bool onError = false;
+    private string errorMessage = "";
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    public void DisplayError(Exception e, string errorMessage)
+    {
+        this.errorMessage = String.IsNullOrWhiteSpace(errorMessage) ? e.Message : errorMessage;
+        this.onError = true;
+        StateHasChanged();
+    }
+
+    public string NextStep { get; set; } = "";
+
+    public void test()
+    {
+        Console.WriteLine(NextStep);
+    }
+
+}

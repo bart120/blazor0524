@@ -7,7 +7,7 @@
 <PageTitle>Liste des marques</PageTitle>
 
 <h3>Marques</h3>
-
+@NextStep
 @if (brands == null)
 {
     <p><em>Chargement...</em></p>
@@ -31,11 +31,27 @@ else
 @code {
     private List<Brand>? brands = null;
 
+    [CascadingParameter]
+    public Action<Exception, string> DisplayError { get; set; }
+
+    [CascadingParameter]
+    public string NextStep { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
+        try
+        {
+            brands = await servBrands.getAllAsync();
+        }
+        catch (Exception e)
+        {
+            DisplayError.Invoke(e, "");
+        }
 
-       brands = await servBrands.getAllAsync();
+    } 
 
-
-    }
+    /*protected override async Task OnParametersSetAsync()
+    {
+        Console.WriteLine("SET NextStep");
+    }*/
 }
