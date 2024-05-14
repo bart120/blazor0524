@@ -2,7 +2,7 @@
 <h3>Authentification</h3>
 
 
-<EditForm novalidate Model="@model" OnSubmit="@submit">
+<EditForm novalidate Model="@model" OnValidSubmit="@submit">
     <DataAnnotationsValidator />
 
     @*<div class="mb-3 row">
@@ -13,7 +13,9 @@
         </div>
     </div>*@
 
-    <InputField Label="Login" @bind-Value="model.Email" />
+    <InputField Label="Login" @bind-Value="model.Email" placeholder="Votre login" />
+
+    <InputField Label="Mot de passe" @bind-Value="model.Password" placeholder="Votre mot de passe" type="password" />
     
 
     <div>
@@ -22,7 +24,7 @@
 </EditForm>
 
 @code {
-    private LoginViewModel model = new LoginViewModel { Email = "test", Password = "" };
+    private LoginViewModel model = new LoginViewModel { Email = "", Password = "" };
 
 
     private void submit()

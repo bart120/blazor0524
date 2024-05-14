@@ -2,11 +2,25 @@
 <div class="mb-3 row">
     <label for="staticEmail" class="col-sm-2 col-form-label">@Label</label>
     <div class="col-sm-10">
-        <InputText @bind-Value:get="Value" @bind-Value:set="SetValueAsync" class="form-control" />
+        <InputText @bind-Value:get="Value" @bind-Value:set="SetValueAsync" class="@($"form-control {validCssClass}")" @attributes="Attributes" />
+        <ValidationMessage For="@ValueExpression" />
+        @foreach (var message in EditContext.GetValidationMessages(fieldId))
+        {
+            <div class="alert alert-danger ">
+                @message
+            </div>
+        }
     </div>
 </div>
 
 @code {
+    private FieldIdentifier fieldId;
+    //private string validCssClass => EditContext.IsValid(fieldId) ? "valid" : "invalid";
+    private string validCssClass => EditContext.FieldCssClass(fieldId);
+
+    [Parameter]
+    public string? CssClass { get; set; }
+
     [Parameter]
     public string? Label { get; set; }
 
@@ -16,13 +30,25 @@
     [Parameter]
     public EventCallback<string> ValueChanged { get; set; }
 
-    /* [Parameter]
-     public Expression<Func<string>> ValueExpression { get; set; }*/
+    [Parameter]
+    public Expression<Func<string>> ValueExpression { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> Attributes { get; set; } = new();
+
+    [CascadingParameter]
+    private EditContext? EditContext { get; set; }
 
     private async Task SetValueAsync(string newValue)
     {
         Value = newValue;
         await ValueChanged.InvokeAsync(newValue);
+        EditContext?.NotifyFieldChanged(fieldId);
+    }
+
+    protected override void OnInitialized()
+    {
+        fieldId = FieldIdentifier.Create(ValueExpression);
     }
 
 }
