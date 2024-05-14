@@ -16,6 +16,8 @@
     <ProjectReference Include="..\ServicesLibrary\ServicesLibrary.csproj" />
   </ItemGroup>
 
-
+  <ItemGroup>
+    <BlazorWebAssemblyLazyLoad Include="CarsLibrary.dll" />
+  </ItemGroup>
 
 </Project>
