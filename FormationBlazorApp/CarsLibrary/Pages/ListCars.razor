@@ -2,8 +2,6 @@
 
 @using CarsLibrary.Components
 
-@inject CarsService carServ
-
 <h3>Les voitures</h3>
 
 @if(cars != null)
@@ -27,7 +25,7 @@
                     <td>@car.Price</td>
                     <td>@car.DateOfCirculation.ToShortDateString()</td>
                     <td><NavLink class="btn btn-secondary" href="@($"cars/detail/{car.ID}?name={car.Model}")">Voir</NavLink></td>
-                    <td><button class="btn btn-secondary">Suppr.</button></td>
+                    <td><button class="btn btn-secondary" @onclick="()=>delete(car)">Suppr.</button></td>
                 </tr>
             }
         </tbody>
@@ -38,15 +36,4 @@ else
     <div class="spinner-border" role="status">
         <span class="visually-hidden">Loading...</span>
     </div>
-}
-
-@code {
-
-    private List<Car>? cars;
-
-    protected override async Task OnInitializedAsync()
-    {
-        this.cars = await carServ.GetCarsAsync();
-    }
-
 }

@@ -26,5 +26,12 @@ namespace ServicesLibrary.Services
         {
             return await _httpClient.GetFromJsonAsync<Car>($"cars/{id}");
         }
+
+        public async Task<Car> DeleteCarAsync(int id)
+        {
+            return await _httpClient.DeleteFromJsonAsync<Car>($"cars/{id}");
+        }
+
+        
     }
 }
