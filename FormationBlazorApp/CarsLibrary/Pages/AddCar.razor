@@ -2,11 +2,13 @@
 
 @using ServicesLibrary.Models
 @using Microsoft.JSInterop
+@using MyComponentsLibrary.Services
 
 @inject NavigationManager nav
 @inject IJSRuntime jsRuntime
 @inject BrandsService servBrands
 @inject CarsService servCars
+@inject ToastService toast;
 
 <h3>Ajouter une voiture</h3>
 
@@ -39,11 +41,19 @@
     <div class="mb-3 row">
         <label class="col-sm-2 col-form-label">Marque</label>
         <div class="col-sm-10">
-            <InputSelect class="form-control form-select" @bind-Value="model.BrandID" >
-                @foreach(var brand in brands)
-                {
-                    <option value="@brand.ID">@brand.Name</option>
-                }
+            <InputSelect class="form-control form-select" @bind-Value="model.BrandID">
+                <ErrorBoundary @ref="errorBoundary" Context="brandsContext">
+                    <ChildContent>
+                        @foreach (var brand in brands)
+                        {
+                            <option value="@brand.ID">@brand.Name</option>
+                        }
+                    </ChildContent>
+                    <ErrorContent>
+                        <option value="">--</option>
+                    </ErrorContent>
+
+                </ErrorBoundary>
             </InputSelect>
             <ValidationMessage For="@(() => model.BrandID)" />
         </div>
@@ -57,22 +67,28 @@
 
 </EditForm>
 
+
 @code {
     private Car model = new Car { DateOfCirculation = DateTime.Now };
-    private List<Brand> brands = new();
+    private List<Brand>? brands;
+
+    private ErrorBoundary? errorBoundary;
 
     protected override async Task OnInitializedAsync()
     {
         brands = await servBrands.getAllAsync();
         model.BrandID = brands.First().ID;
+        errorBoundary?.Recover();
+
     }
 
     private async void submit()
     {
         var newCar = await servCars.CreateCarAsync(model);
-        if(newCar != null)
+        if (newCar != null)
         {
-            await jsRuntime.InvokeVoidAsync("alert", $"Voiture créée avec l'ID {newCar.ID}");
+            // await jsRuntime.InvokeVoidAsync("alert", $"Voiture créée avec l'ID {newCar.ID}");
+            toast.ShowToast($"Voiture créée avec l'ID {newCar.ID}", MyComponentsLibrary.ToastLevel.Success);
             nav.NavigateTo("/cars");
         }
     }

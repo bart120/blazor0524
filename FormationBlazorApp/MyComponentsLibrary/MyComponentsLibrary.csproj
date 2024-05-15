@@ -16,8 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MyComponentsLibrary\MyComponentsLibrary.csproj" />
-    <ProjectReference Include="..\ServicesLibrary\ServicesLibrary.csproj" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>
