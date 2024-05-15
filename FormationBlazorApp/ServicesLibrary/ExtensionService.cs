@@ -15,6 +15,7 @@ namespace ServicesLibrary
         {
             services.AddScoped(x => new HttpClient { BaseAddress = new Uri( baseAddress) });
             services.AddScoped<BrandsService>();
+            services.AddScoped<CarsService>();
             return services;
         }
     }

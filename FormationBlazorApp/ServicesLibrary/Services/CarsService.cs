@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace ServicesLibrary.Services
 {
-    public class BrandsService
+    public class CarsService
     {
         private readonly HttpClient _httpClient;
 
-        public BrandsService(HttpClient httpClient)
+        public CarsService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
 
-        public async Task<List<Brand>> getAllAsync()
+        public async Task<List<Car>> GetCarsAsync()
         {
-            return await _httpClient.GetFromJsonAsync<List<Brand>>("brands");
+            return await _httpClient.GetFromJsonAsync<List<Car>>("cars");
         }
 
-        public async Task<Brand> getByIDAsync(int id)
+        public async Task<Car> GetCarByIDAsync(int id)
         {
-            return await _httpClient.GetFromJsonAsync<Brand>($"brands/{id}");
+            return await _httpClient.GetFromJsonAsync<Car>($"cars/{id}");
         }
     }
 }

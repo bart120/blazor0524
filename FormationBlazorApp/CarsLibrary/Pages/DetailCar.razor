@@ -1,7 +1,40 @@
-﻿@page "/cars/detail"
+﻿@page "/cars/detail/{id:int}"
 
-<h3>DetailCar</h3>
+@using CarsLibrary.Components
+@using Microsoft.JSInterop
+
+@inject CarsService carServ
+@inject NavigationManager nav
+@inject IJSRuntime jsRuntime
+
+
+<button class="btn btn-secondary" @onclick=back>&lsaquo;-</button>
+
+<h3>@car?.Model</h3>
+<p><DisplayBrand BrandID="car?.BrandID" /></p>
+<p>@car?.Price €</p>
+
 
 @code {
+    private Car? car;
+    private JsInterop? jsInterop;
 
+    [Parameter]
+    public int ID { get; set; }
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "name")]
+    public string? Name { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        jsInterop = new JsInterop(jsRuntime);
+        car = await carServ.GetCarByIDAsync(ID);
+    }
+
+    private async Task back()
+    {
+        //await jsRuntime.InvokeVoidAsync("alert", "Bonjour");
+        await jsInterop?.GoBackAsync();
+    }
 }

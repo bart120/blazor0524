@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesLibrary", "ServicesLibrary\ServicesLibrary.csproj", "{2ED24A01-AEA4-4DE5-8429-CFDEF7388F32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesLibrary", "ServicesLibrary\ServicesLibrary.csproj", "{2ED24A01-AEA4-4DE5-8429-CFDEF7388F32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarsLibrary", "CarsLibrary\CarsLibrary.csproj", "{94FBD5CD-276D-40E8-AB9A-C389E5208424}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarsLibrary", "CarsLibrary\CarsLibrary.csproj", "{94FBD5CD-276D-40E8-AB9A-C389E5208424}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormationBlazorApp", "FormationBlazorApp\FormationBlazorApp.csproj", "{B229ECE9-07A0-44EA-991E-B043FD007CEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FormationBlazorApp", "FormationBlazorApp\FormationBlazorApp.csproj", "{B229ECE9-07A0-44EA-991E-B043FD007CEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
