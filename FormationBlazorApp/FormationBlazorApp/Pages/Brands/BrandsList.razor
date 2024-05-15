@@ -1,8 +1,10 @@
 ﻿@page "/brands"
+@using Microsoft.AspNetCore.Authorization
 
 @*@inject HttpClient http*@
 @inject BrandsService servBrands;
 
+@attribute [Authorize(Policy = "ADMIN")]
 
 <PageTitle>Liste des marques</PageTitle>
 

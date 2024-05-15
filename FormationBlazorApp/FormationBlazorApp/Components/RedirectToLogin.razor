@@ -1,0 +1,11 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+@inject NavigationManager nav
+
+@code {
+    protected override void OnInitialized()
+    {
+        nav.NavigateToLogin("authentication/login");
+    }
+}

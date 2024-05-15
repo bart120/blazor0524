@@ -14,5 +14,9 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddApiServices(builder.Configuration["ApiUrl"]);
 builder.Services.AddMyComponentsServices();
 builder.Services.AddBlazoredSessionStorageAsSingleton();
+builder.Services.AddOidcAuthentication(options =>
+{
+    builder.Configuration.Bind("Authentication", options.ProviderOptions);
+});
 
 await builder.Build().RunAsync();

@@ -1,21 +1,37 @@
 ﻿﻿@using System.Reflection
 @using Microsoft.AspNetCore.Components.WebAssembly.Services
+@using Microsoft.AspNetCore.Components.Authorization
 
 @inject LazyAssemblyLoader assemblyLoader
 
+
 <Error>
-    <Router AppAssembly="@typeof(App).Assembly" AdditionalAssemblies="@assemblies" OnNavigateAsync="onNavigate">
-        <Found Context="routeData">
-            <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
-        </Found>
-        <NotFound>
-            <PageTitle>Not found</PageTitle>
-            <LayoutView Layout="@typeof(MainLayout)">
-                <p class="alert-danger">Page introuvable</p>
-            </LayoutView>
-        </NotFound>
-    </Router>
+    <CascadingAuthenticationState>
+        <Router AppAssembly="@typeof(App).Assembly" AdditionalAssemblies="@assemblies" OnNavigateAsync="@onNavigate">
+            <Found Context="routeData">
+                @*<RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />*@
+                <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+                    <NotAuthorized>
+                        @if (context.User.Identity!.IsAuthenticated)
+                        {
+                            <p>Tu n'as pas le droit de venir ici!</p>
+                        }
+                        else
+                        {
+                            <RedirectToLogin />
+                        }
+                    </NotAuthorized>
+                </AuthorizeRouteView>
+                <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+            </Found>
+            <NotFound>
+                <PageTitle>Not found</PageTitle>
+                <LayoutView Layout="@typeof(MainLayout)">
+                    <p class="alert-danger">Page introuvable</p>
+                </LayoutView>
+            </NotFound>
+        </Router>
+    </CascadingAuthenticationState>
 </Error>
 @code {
     private List<Assembly> assemblies = new();
