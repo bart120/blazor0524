@@ -2,6 +2,7 @@
 
 @using CarsLibrary.Components
 
+
 <h3>Les voitures</h3>
 
 @if(cars != null)
@@ -20,7 +21,7 @@
             @foreach (var car in cars)
             {
                 <tr>
-                    <td scope="row">@car.Model</td>
+                    <td scope="row" class="test">@car.Model</td>
                     <td><DisplayBrand BrandID="car.BrandID" /></td>
                     <td>@car.Price</td>
                     <td>@car.DateOfCirculation.ToShortDateString()</td>
